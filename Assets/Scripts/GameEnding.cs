@@ -18,6 +18,11 @@ public class GameEnding : MonoBehaviour
     bool m_IsPlayerCaught;
     float m_Timer;
     bool m_HasAudioPlayed;
+
+    float curTime;
+    int curScore;
+    float bestTime;
+    int bestScore;
     
     void OnTriggerEnter (Collider other)
     {
@@ -36,6 +41,9 @@ public class GameEnding : MonoBehaviour
     {
         if (m_IsPlayerAtExit)
         {
+            curScore = Coin.money;
+            curTime = Timer.timeRecord;
+            Rank(curScore, curTime);
             EndLevel (exitBackgroundImageCanvasGroup, false, exitAudio);
         }
         else if (m_IsPlayerCaught)
@@ -74,6 +82,32 @@ public class GameEnding : MonoBehaviour
             else
             {
                 Application.Quit ();
+            }
+        }
+    
+    }
+
+    void Rank(int currentScore, float currentTime){
+        PlayerPrefs.SetInt("CurrentPlayerScore", currentScore);
+        PlayerPrefs.SetFloat("CurrentPlayerTime", currentTime);
+
+        if(!PlayerPrefs.HasKey("BestScore")){
+            PlayerPrefs.SetInt("BestScore", currentScore);
+            PlayerPrefs.SetFloat("BestTime", currentTime);
+        }
+        else{
+            bestScore = PlayerPrefs.GetInt("BestScore");
+            bestTime = PlayerPrefs.GetFloat("BestTime");
+
+            if(bestScore < currentScore){
+                PlayerPrefs.SetInt("BestScore", currentScore);
+                PlayerPrefs.SetFloat("BestTime", currentTime);
+            }
+            else if(bestScore == currentScore){
+                if(bestTime > currentTime){
+                    PlayerPrefs.SetInt("BestScore", currentScore);
+                    PlayerPrefs.SetFloat("BestTime", currentTime);
+                }
             }
         }
     }
