@@ -47,6 +47,7 @@ public class GameEnding : MonoBehaviour
     void EndLevel (CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource)
     {
         Timer.TimerOn = false;
+        Coin.money = 0;
 
         if(!m_HasAudioPlayed)
         {
@@ -56,6 +57,7 @@ public class GameEnding : MonoBehaviour
 
         m_Timer += Time.deltaTime;
         imageCanvasGroup.alpha = m_Timer / fadeDuration;
+        
 
         if (m_Timer > fadeDuration + displayImageDuration)
         {
@@ -77,7 +79,6 @@ public class GameEnding : MonoBehaviour
     }
 
     public void OnclickRestart(){
-        HPManager.hp = 3;
         SceneManager.LoadScene (0);
     }
 

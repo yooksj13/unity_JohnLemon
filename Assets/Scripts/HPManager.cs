@@ -22,7 +22,12 @@ public class HPManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hp==2){
+        if(hp==3){
+            heart1.GetComponent<Image>().enabled = true;
+            heart2.GetComponent<Image>().enabled = true;
+            heart3.GetComponent<Image>().enabled = true;
+        }
+        else if(hp==2){
             heart3.GetComponent<Image>().enabled = false;
         }
         else if(hp==1){

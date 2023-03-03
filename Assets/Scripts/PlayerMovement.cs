@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
+    //public static int score = 0;
     public float turnSpeed = 20f;
+    public Text Score;
 
 
     public GameObject m_nameBar;
+
     
     Animator m_Animator;
     Rigidbody m_Rigidbody;
@@ -21,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     void Start ()
 
     {
+        if(HPManager.hp == 0){  
+            HPManager.hp = 3;
+        }
+        
         m_Animator = GetComponent<Animator> ();
         m_Rigidbody = GetComponent<Rigidbody> ();
         m_AudioSource = GetComponent<AudioSource>();
@@ -28,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate ()
     {
+        Score.text = (Coin.money).ToString();
 
         float horizontal = Input.GetAxis ("Horizontal");
         float vertical = Input.GetAxis ("Vertical");
@@ -63,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
         m_Rigidbody.MovePosition (m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
         m_Rigidbody.MoveRotation (m_Rotation);
     }
+
+
 
 }
 
