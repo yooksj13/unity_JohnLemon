@@ -46,6 +46,7 @@ public class GameEnding : MonoBehaviour
 
     void EndLevel (CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource)
     {
+
         if(!m_HasAudioPlayed)
         {
             audioSource.Play ();
@@ -60,13 +61,11 @@ public class GameEnding : MonoBehaviour
             if (doRestart)
             {
                 HPManager.hp-=1;
-                if(HPManager.hp==0){
-                    gameoverBackgroundImageCanvasGroup.alpha = m_Timer / fadeDuration;
-                    HPManager.hp = 3;
+                if(HPManager.hp > 0){
                     SceneManager.LoadScene (0);
                 }
                 else{
-                    SceneManager.LoadScene (0);
+                    gameoverBackgroundImageCanvasGroup.alpha = m_Timer / fadeDuration;
                 }
             }
             else
@@ -75,4 +74,15 @@ public class GameEnding : MonoBehaviour
             }
         }
     }
+
+    public void OnclickRestart(){
+        HPManager.hp = 3;
+        SceneManager.LoadScene (0);
+    }
+
+    public void OnClickExit()
+    {
+        Application.Quit ();
+    }
+    
 }

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float turnSpeed = 20f;
+
+
+    public GameObject m_nameBar;
     
     Animator m_Animator;
     Rigidbody m_Rigidbody;
@@ -14,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start ()
     {
+
         m_Animator = GetComponent<Animator> ();
         m_Rigidbody = GetComponent<Rigidbody> ();
         m_AudioSource = GetComponent<AudioSource>();
@@ -21,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate ()
     {
+        
+
         float horizontal = Input.GetAxis ("Horizontal");
         float vertical = Input.GetAxis ("Vertical");
 
@@ -46,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation (desiredForward);
+
+        m_nameBar.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1.5f, 0));
     }
 
     void OnAnimatorMove ()
