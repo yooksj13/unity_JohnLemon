@@ -58,7 +58,13 @@ public class GameEnding : MonoBehaviour
         {
             if (doRestart)
             {
-                SceneManager.LoadScene (0);
+                HPManager.hp-=1;
+                if(HPManager.hp==0){
+                    Application.Quit();
+                }
+                else{
+                    SceneManager.LoadScene (0);
+                }
             }
             else
             {
