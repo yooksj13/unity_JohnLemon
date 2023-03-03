@@ -12,6 +12,7 @@ public class GameEnding : MonoBehaviour
     public AudioSource exitAudio;
     public CanvasGroup caughtBackgroundImageCanvasGroup;
     public AudioSource caughtAudio;
+    public CanvasGroup gameoverBackgroundImageCanvasGroup;
 
     bool m_IsPlayerAtExit;
     bool m_IsPlayerCaught;
@@ -60,7 +61,9 @@ public class GameEnding : MonoBehaviour
             {
                 HPManager.hp-=1;
                 if(HPManager.hp==0){
-                    Application.Quit();
+                    gameoverBackgroundImageCanvasGroup.alpha = m_Timer / fadeDuration;
+                    HPManager.hp = 3;
+                    SceneManager.LoadScene (0);
                 }
                 else{
                     SceneManager.LoadScene (0);
