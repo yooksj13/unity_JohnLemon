@@ -46,6 +46,7 @@ public class GameEnding : MonoBehaviour
 
     void EndLevel (CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource)
     {
+        Timer.TimerOn = false;
 
         if(!m_HasAudioPlayed)
         {

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+
     public float turnSpeed = 20f;
 
 
@@ -17,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     Quaternion m_Rotation = Quaternion.identity;
 
     void Start ()
-    {
 
+    {
         m_Animator = GetComponent<Animator> ();
         m_Rigidbody = GetComponent<Rigidbody> ();
         m_AudioSource = GetComponent<AudioSource>();
@@ -26,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate ()
     {
-        
 
         float horizontal = Input.GetAxis ("Horizontal");
         float vertical = Input.GetAxis ("Vertical");
@@ -62,5 +63,6 @@ public class PlayerMovement : MonoBehaviour
         m_Rigidbody.MovePosition (m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
         m_Rigidbody.MoveRotation (m_Rotation);
     }
+
 }
 
