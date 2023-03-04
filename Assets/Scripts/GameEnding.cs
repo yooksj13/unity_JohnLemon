@@ -70,8 +70,9 @@ public class GameEnding : MonoBehaviour
         if (m_Timer > fadeDuration + displayImageDuration)
         {
             if (doRestart)
-            {
+            { 
                 HPManager.hp-=1;
+
                 if(HPManager.hp > 0){
                     SceneManager.LoadScene (0);
                 }
@@ -113,6 +114,7 @@ public class GameEnding : MonoBehaviour
     }
 
     public void OnclickRestart(){
+        HPManager.hp=4;
         SceneManager.LoadScene (0);
     }
 

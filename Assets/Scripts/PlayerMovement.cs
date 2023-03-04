@@ -22,8 +22,8 @@ public class PlayerMovement : MonoBehaviour
     void Start ()
 
     {
-        if(HPManager.hp == 0){  
-            HPManager.hp = 3;
+        if(HPManager.hp == 0){
+            HPManager.hp=3;
         }
         
         m_Animator = GetComponent<Animator> ();
